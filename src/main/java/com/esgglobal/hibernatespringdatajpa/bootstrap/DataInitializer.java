@@ -3,8 +3,10 @@ package com.esgglobal.hibernatespringdatajpa.bootstrap;
 import com.esgglobal.hibernatespringdatajpa.domain.Book;
 import com.esgglobal.hibernatespringdatajpa.repositories.BookRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+@Profile({"local-mysql", "default"})
 @Component
 public class DataInitializer implements CommandLineRunner {
 
@@ -16,6 +18,8 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        bookRepository.deleteAll();
+
         Book one = Book.builder().title("one").publisher("unknown").isbn("123").build();
         bookRepository.save(one);
         System.out.println("id #1: " + one.getId());
