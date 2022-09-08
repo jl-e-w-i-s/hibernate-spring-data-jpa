@@ -18,7 +18,8 @@ public class Book {
     private String title;
     private String isbn;
     private String publisher;
-
+    private Long authorId;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @EqualsAndHashCode.Include
